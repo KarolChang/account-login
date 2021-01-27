@@ -1,0 +1,17 @@
+{{!-- Error for email --}}
+{{#if emailErr}}
+<h1 class="m-3" style="color:red;">Sorry, can not find this email !</h1>
+{{/if}}
+
+{{!-- Error for password --}}
+{{#if passwordErr}}
+<h1 class="m-3" style="color:rgb(236, 14, 118);">Sorry, your password is wrong !</h1>
+{{/if}}
+
+{{!-- Login success --}}
+{{#if firstName}}
+<h1 class="m-3">Welcome back, {{firstName}} !</h1>
+{{/if}}
+
+{{!-- back Link --}}
+<a href="/" class="btn btn-warning m-3" class="font-weight:bold;">back to the login page</a>
