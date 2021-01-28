@@ -1,7 +1,7 @@
 <div class="container mt-5 mx-5">
   <div class="login-content" style="max-width:400px;margin:auto;">
     <h2 class="mb-3" style="text-align:center;font-weight:bold;">Account Login</h2>
-    <form action="/login" method="POST">
+    <form action="/" method="POST">
       <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
         <input type="email" class="form-control my-2" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -16,5 +16,13 @@
         <button type="submit" class="btn btn-primary">Sign in</button>
       </div>
     </form>
+    <div class="alert alert-success mt-3" role="alert">
+      {{#if emailErr}}
+      Sorry, can not find this email !
+      {{/if}}
+      {{#if passwordErr}}
+      Sorry, your password is wrong !
+      {{/if}}
+    </div>
   </div>
 </div>

@@ -2,6 +2,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 // use express on app
 const app = express()
@@ -12,6 +13,9 @@ app.set('view engine', 'hbs')
 
 // use body-parser
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// use cookie-parser ( 設定簽章 )
+app.use(cookieParser('karol171717'))
 
 // user information
 const users = [
@@ -44,26 +48,49 @@ const users = [
 
 // routes => index page
 app.get('/', (req, res) => {
-  res.render('index')
+  console.log('1', req.signedCookies.user)
+  if (req.signedCookies.user) {
+    res.redirect('/success')
+  } else {
+    res.render('index')
+  }
 })
 
-// routes => login page
-app.post('/login', (req, res) => {
+// routes => success page
+app.get('/success', (req, res) => {
+  if (req.signedCookies.user) {
+    const cookieUserName = req.signedCookies.user
+    res.render('success', { cookieUserName })
+  } else {
+    res.redirect('/')
+  }
+})
+
+// verify user
+app.post('/', (req, res) => {
   const email = req.body.email
   const password = req.body.password
   const user = users.find(user => user.email === email)
   if (!user) {
     const emailErr = 1
-    return res.render('hello', { emailErr })
+    return res.render('index', { emailErr })
   } else {
     if (user.password !== password) {
       const passwordErr = 1
-      return res.render('hello', { passwordErr })
+      return res.render('index', { passwordErr })
     } else {
-      const firstName = user.firstName
-      res.render('hello', { firstName })
+      const userName = user.firstName
+      // save userInfo by cookies
+      res.cookie('user', userName, { path: '/', signed: true, httpOnly: true })
+      res.redirect('/success')
     }
   }
+})
+
+// routes => log out and clear cookie
+app.get('/logout', (req, res) => {
+  res.clearCookie('user', { path: '/' })
+  res.redirect('/')
 })
 
 // listen the server

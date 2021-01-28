@@ -1,0 +1,12 @@
+{{!-- Login success --}}
+{{#if userName}}
+<h1 class="m-3">Welcome back, {{userName}} !</h1>
+{{/if}}
+
+{{#if cookieUserName}}
+<h1 class="m-3">Welcome back, {{cookieUserName}} !</h1>
+{{/if}}
+
+
+{{!-- Login Out --}}
+<a href="/logout" class="btn btn-dark m-3" class="font-weight:bold;">login out</a>
