@@ -3,7 +3,8 @@
 
 ## Features - 產品功能
 1. 使用者可使用測試帳號登入
-2. 測試帳號如下 :
+2. 成功登入後，將於下次造訪網頁時自動進入登入成功的畫面
+3. 測試帳號如下 :
 > firstName: 'Tony',
 email: 'tony@stark.com',
 password: 'iamironman'
@@ -27,7 +28,7 @@ password: 'password'
 ### 首頁
 ![](./pictures/index.png)
 ### login success頁面
-![](./pictures/login-success.png)
+![](./pictures/success.png)
 ### email wrong頁面
 ![](./pictures/email-wrong.png)
 ### password wrong頁面
@@ -42,7 +43,7 @@ password: 'password'
 
 3. 安裝 npm & 透過 npm 安裝以下套件
 > `npm install`
-> `npm i express express-handlebars body-parser`
+> `npm i express express-handlebars body-parser cookie-parser`
 
 4. 安裝nodemon
 > `npm install -g nodemon`
@@ -57,3 +58,4 @@ password: 'password'
 * [express框架](https://www.npmjs.com/package/express)
 * [express handlebars模板引擎](https://www.npmjs.com/package/express-handlebars)
 * [body-parser](https://www.npmjs.com/package/body-parser)
+* [cookie-parser](https://www.npmjs.com/package/cookie-parser)

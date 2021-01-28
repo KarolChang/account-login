@@ -48,7 +48,6 @@ const users = [
 
 // routes => index page
 app.get('/', (req, res) => {
-  console.log('1', req.signedCookies.user)
   if (req.signedCookies.user) {
     res.redirect('/success')
   } else {
@@ -73,11 +72,11 @@ app.post('/', (req, res) => {
   const user = users.find(user => user.email === email)
   if (!user) {
     const emailErr = 1
-    return res.render('index', { emailErr })
+    return res.render('index', { emailErr, email })
   } else {
     if (user.password !== password) {
       const passwordErr = 1
-      return res.render('index', { passwordErr })
+      return res.render('index', { passwordErr, email })
     } else {
       const userName = user.firstName
       // save userInfo by cookies
